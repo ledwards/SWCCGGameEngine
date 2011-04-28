@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
+    <script src="/nowjs/now.js"></script>
+    <link href="http://127.0.0.1:8081/stylesheet.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <script>
+		var SetupCards = function SetupCard(selector){			
+			$(selector).draggable();
+			$(selector).bind("dragstop", function(event, ui) {
+				top = ui.position.top;
+				left = ui.position.left;
+				selector = "#" + $(this).attr("id");
+				
+			  now.imageDidFinishDragging(selector, top, left);
+			});
+		};
+
+    $(document).ready(function(){
+			SetupCards(".card");
+			
+      now.moveImageTo = function(selector, top, left) {
+				$(selector).css("top", top);
+				$(selector).css("left", left);
+      };
+    });
+  </script>
+
+  <body>
+    <div>
+      <img src="http://s3.amazonaws.com/ledwards-dynamicresume-test/card_images/2024/full_size.gif" class="card" id="dark0" />
+    </div>
+  </body>
+</html>
